@@ -14,6 +14,9 @@ export default Ember.Component.extend({
   value: null,
   width: '100%',
   selectionDidChange: null,
+  updateChosen: false,
+
+
   _options: function() {
     var options = {};
 
@@ -76,5 +79,13 @@ export default Ember.Component.extend({
   didInsertElement: function() {
     this._super();
     this._setupChosen();
-  }
+  },
+
+  willClearRender: function(){
+    this.$().chosen('destroy')
+  },
+
+  updateChosenObserver: function(){
+    this.rerender()
+  }.observes("updateChosen")
 });
