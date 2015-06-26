@@ -76,16 +76,14 @@ export default Ember.Component.extend({
     });
       _this.$().val(currentValue).trigger('chosen:updated')
   }.observes('_options'),
-  didInsertElement: function() {
+  didRender: function() {
     this._super();
+    this.cleanUp();
     this._setupChosen();
   },
 
-  willClearRender: function(){
+  cleanUp: function(){
     this.$().chosen('destroy')
-  },
+  }
 
-  updateChosenObserver: function(){
-    this.rerender()
-  }.observes("updateChosen")
 });
