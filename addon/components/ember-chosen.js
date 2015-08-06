@@ -83,6 +83,8 @@ export default Ember.Component.extend({
   },
 
   cleanUp: function(){
+    this.$().off('change');
+    this.$().off('chosen:maxselected');
     this.$().chosen('destroy')
   }
 
